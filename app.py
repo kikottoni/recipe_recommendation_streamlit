@@ -98,7 +98,7 @@ def score_recipes(user_input, category, time, num_rec):
 st.markdown("---")
 
 
-button("Tudo pronto", type="primary", on_click=score_recipes, args=(user_input, category, time, num_rec))
+st.button("Tudo pronto", type="primary", on_click=score_recipes, args=(user_input, category, time, num_rec))
 
 
 
