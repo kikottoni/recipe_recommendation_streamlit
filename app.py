@@ -97,13 +97,11 @@ def score_recipes(user_input, category, time, num_rec):
 
 st.markdown("---")
 
-recommendation = score_recipes(user_input, category, time, num_rec)
 
-if st.button("Tudo pronto", type="primary", on_click=score_recipes, args=(user_input, category, time, num_rec)):
-    st.dataframe(recommendation)
-else:
-    pass
-#
+button("Tudo pronto", type="primary", on_click=score_recipes, args=(user_input, category, time, num_rec))
+
+
+
 
 
 
