@@ -101,7 +101,22 @@ st.markdown("---")
 
 if st.button("Tudo pronto", type="primary"):
     recommendation = score_recipes(macro_classification, ingredient_input, time, num_rec)
-    st.dataframe(data=recommendation)
+    for i in range(0, num_rec):
+        st.title(str(recommendation[['Name']].values[i]))
+        st.subheader("Descrição")
+        st.write(str(recommendation[['Description']].values[i]))
+        st.subheader("Categoria")
+        st.write(str(recommendation[['RecipeCategory']].values[i]))
+        st.subheader("Tempo necessário")
+        st.write(str(recommendation[['totaltime_min']].values[i]))
+        st.subheader("Ingredientes")
+        st.write(str(recommendation[['RecipeIngredientParts']].values[i]))
+        st.subheader("Quantidade dos ingredientes")
+        st.write(str(recommendation[['RecipeIngredientQuantities']].values[i]))
+        st.subheader("Instruções")
+        st.write(str(recommendation[['RecipeInstructions']].values[i]))
+        st.markdown("---")
+
 else:
     pass
 
