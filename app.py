@@ -39,7 +39,6 @@ time = st.number_input("Tempo máximo em minutos", step=5, value=10, min_value=5
 st.write("Quantos pratos devo recomendar?")
 num_rec = st.number_input("Quantidade de pratos:", step=1, value=3, min_value=1, max_value=10)
 
-e = st.empty()
 
 def score_recipes(macro_classification, ingredient_input, time, num_rec):
     '''
@@ -100,15 +99,16 @@ def score_recipes(macro_classification, ingredient_input, time, num_rec):
 
     recipes_sistema_rec = recipes_sistema_rec.sort_values(by='score', ascending=False).iloc[:num_rec]
     # return recipes_sistema_rec
-    return e.dataframe(recipes_sistema_rec[
+    return recipes_sistema_rec[
         ['Name', 'common_ingredient', 'score', 'score_ingredient_final', 'score_name', 'AggregatedRating', 'Clusters',
-         'Description', 'RecipeCategory', 'RecipeIngredientParts', 'RecipeIngredientParts_clean_list', 'totaltime_min']])
+         'Description', 'RecipeCategory', 'RecipeIngredientParts', 'RecipeIngredientParts_clean_list', 'totaltime_min']]
 
 st.markdown("---")
 
 
-st.button("Tudo pronto", type="primary", on_click=score_recipes, args=(macro_classification, ingredient_input, time, num_rec))
-
-
-
+if st.button("Tudo pronto", type="primary"):
+    recommendation = score_recipes(macro_classification, ingredient_input, time, num_rec)
+    st.dataframe(data=recommendation)
+else:
+    pass
 
