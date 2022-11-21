@@ -1,7 +1,13 @@
 import streamlit as st
 import pandas as pd
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+import nltk
+nltk.download('punkt')
 
 recipes = pd.read_csv("recipes_final.csv")
+
+PS = PorterStemmer()
 
 #tema
 primaryColor="#BE235C"
@@ -51,7 +57,14 @@ def score_recipes(macro_classification, ingredient_input, time, num_rec):
 
     # Filtro do dataset de acordo com a tipo de receita desejada
     recipes_sistema_rec = recipes_sistema_rec[recipes_sistema_rec['MacroClassification'] == macro_classification]
+    
+    def stemmer_words(text):
+        word_tokens = word_tokenize(text)
+        stemmer_words = ' '.join(PS.stem(word) for word in word_tokens)
+        return stemmer_words
 
+    ingredient_input = [stemmer_words(i) for i in ingredient_input]
+    
     # Funçao para calcular a quantidade de ingredientes em comum com o input do usuário
     def amount_ingredient(ingredient_list):
         amount = 0
