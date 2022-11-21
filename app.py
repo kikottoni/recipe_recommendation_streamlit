@@ -89,8 +89,8 @@ def score_recipes(macro_classification, ingredient_input, time, num_rec):
         'score_name']
 
     # filtrando dataset de acordo com o cluster que possui a receita com maior score dos ingredientes
-    #cluster_selected = recipes_sistema_rec.loc[recipes_sistema_rec['score_ingredient_final'].idxmax]['Clusters']
-    #recipes_sistema_rec = recipes_sistema_rec[recipes_sistema_rec['Clusters'] == cluster_selected]
+    cluster_selected = recipes_sistema_rec.loc[recipes_sistema_rec['score_ingredient_final'].idxmax()]['Clusters']
+    recipes_sistema_rec = recipes_sistema_rec[recipes_sistema_rec['Clusters'] == cluster_selected]
 
     # filtrando dataset baseado no tempo máximo de preparo desejada pelo usuário
     recipes_sistema_rec = recipes_sistema_rec[recipes_sistema_rec.totaltime_min <= time]
